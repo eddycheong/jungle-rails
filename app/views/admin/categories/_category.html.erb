@@ -1,7 +1,11 @@
 <tr>
-  <td>
-    <%= image_tag category.products.first.image.tiny %>
-  </td>
+  <% if category.products.first %>
+    <td>
+      <%= image_tag category.products.first.image.tiny %>
+    </td>
+  <% else %>
+    <td></td>
+  <% end %>
   <td>
     <h4><%= category.name %></h4>
   </td>
