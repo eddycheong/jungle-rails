@@ -162,13 +162,13 @@ prod3 = Product.find_by(name: 'Electric Chair')
 
 Review.destroy_all
 
-prod1.reviews.create!(user_id: user1.id)
+prod1.reviews.create!(user_id: user1.id, description: 'The bookshelf is much smaller in real life...')
 prod1.reviews.create!(user_id: user2.id, rating: 5)
 
-prod2.reviews.create!(user_id: user1.id, rating: 1)
-prod2.reviews.create!(user_id: user2.id, rating: 1)
+prod2.reviews.create!(user_id: user1.id, rating: 1, description: 'It doesn\'t slices and dices!')
+prod2.reviews.create!(user_id: user2.id, rating: 1, description: 'It slices my fingers better than hotdogs.')
 
-prod3.reviews.create!(user_id: user1.id, rating: 2)
-prod3.reviews.create!(user_id: user2.id, rating: 4)
+prod3.reviews.create!(user_id: user1.id, rating: 2, description: 'It is a bit shocking.')
+prod3.reviews.create!(user_id: user2.id, rating: 4, description: 'This is exactly what I need!')
 
 puts "DONE!"
