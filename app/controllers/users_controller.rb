@@ -19,8 +19,8 @@ class UsersController < ApplicationController
         :first_name,
         :last_name,
         :email,
-        :password_digest,
-        :password_digest_confirmation
+        :password,
+        :password_confirmation
       )
     end
 
