@@ -132,5 +132,43 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+## USERS
+
+puts "Re-creating Users ..."
+
+User.destroy_all
+
+user1 = User.create!({
+  first_name: 'Eddy',
+  last_name: 'Cheong',
+  email: 'eddycheong@cheong.com',
+  password_digest: BCrypt::Password.create('eddy')
+})
+
+user2 = User.create!({
+  first_name: 'Thomas',
+  last_name: 'Edison',
+  email: 'thomas@edison.com',
+  password_digest: BCrypt::Password.create('thomas')
+})
+
+## REVIEWS
+
+puts "Re-creating Reviews ..."
+
+prod1 = Product.find_by(name: 'Red Bookshelf')
+prod2 = Product.find_by(name: 'Hotdog Slicer')
+prod3 = Product.find_by(name: 'Electric Chair')
+
+Review.destroy_all
+
+prod1.reviews.create!(user_id: user1.id)
+prod1.reviews.create!(user_id: user2.id, rating: 5)
+
+prod2.reviews.create!(user_id: user1.id, rating: 1)
+prod2.reviews.create!(user_id: user2.id, rating: 1)
+
+prod3.reviews.create!(user_id: user1.id, rating: 2)
+prod3.reviews.create!(user_id: user2.id, rating: 4)
 
 puts "DONE!"
