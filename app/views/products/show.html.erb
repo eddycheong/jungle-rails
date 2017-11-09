@@ -25,7 +25,16 @@
         </dl>
       </div>
     </div>
+  </article>
 
+  <article class="product-review">
+    <h3>Reviews </h3>
+    <% @product.reviews.each do |review| %>
+      <div class="row">
+        <p><%= review.rating %></p>
+        <p><%= review.description %></p>
+      </div>
+    <% end %>
   </article>
 
 </section>
