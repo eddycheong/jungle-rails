@@ -1,8 +1,13 @@
-Welcome to example.com, <%= @order.id %>
+Thank you for your order!
 ===============================================
  
-You have successfully signed up to example.com,
- 
-To login to the site, just follow this link: PLACEHOLDER.
- 
-Thanks for joining and have a great day!
+Order Details
+======================
+
+<% @order.line_items.each do |line_item| %>
+  <%= render 'item_text', line_item: line_item %>
+<% end %>
+
+Order Total
+======================
+<%= Money.new(@order.line_items.sum(:total_price_cents))%>

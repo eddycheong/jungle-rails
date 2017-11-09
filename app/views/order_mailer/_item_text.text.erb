@@ -1,0 +1,16 @@
+<% if product = Product.find_by(id: line_item.product_id) %>
+
+Product
+=======
+<%= product.name %>
+<%= product.description %>
+
+Quantity
+===========
+<%= line_item.quantity %>
+
+Price Total
+===========
+<%= Money.new(line_item.total_price_cents)  %>
+
+<% end %>

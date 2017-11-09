@@ -4,13 +4,35 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, <%= @order.id %></h1>
-    <p>
-      You have successfully signed up to example.com,
-    </p>
-    <p>
-      To login to the site, just follow this link: PLACEHOLDER.
-    </p>
-    <p>Thanks for joining and have a great day!</p>
+    <h1>Thank you for your order!</h1>
+
+    <h2>Order Details</h2>
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2">Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order.line_items.each do |line_item| %>
+            <%= render 'item_html', line_item: line_item %>
+          <% end %>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>
+              TOTAL:
+            </th>
+            <th colspan="2">
+            </th>
+            <th>
+              <%= Money.new(@order.line_items.sum(:total_price_cents))%>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+
   </body>
 </html>
