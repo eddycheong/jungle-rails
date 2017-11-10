@@ -1,5 +1,5 @@
 class OrderMailer < ApplicationMailer
-  default from: 'no-reply@jungle.com'
+  default from: ENV["GMAIL_ACCOUNT"]
 
   def receipt_email(order)
     @order = order
