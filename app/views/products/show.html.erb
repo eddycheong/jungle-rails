@@ -60,6 +60,7 @@
           <%= render 'rating', rating: review.rating %>
         </div>
         <div>
+          <p><%= "By: #{review.user.first_name} #{review.user.last_name}" %></p>
           <p><%= review.description %></p>
         </div> 
         <% if review.user.id == session[:user_id]%>
