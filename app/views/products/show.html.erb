@@ -28,34 +28,47 @@
 
     <% if session[:user_id] %>
       <div class="row">
-        <%= form_for [@product, @review] do |f| %>
-            <p>
-              <%= f.label :rating %><br>
-              <%= f.select(:rating, (1..5)) %>
-            </p>
-          
-            <p>
-              <%= f.label :description %><br>
-              <%= f.text_area :description %>
-            </p>
+        <div id="review-form" class="col-sm-12">
+          <%= form_for [@product, @review] do |f| %>
+              <div class="form-group">
+                <%= f.label :rating %>
+                <%= f.select(:rating, (1..5), {}, {class: 'form-control'}) %>
+              </div>
+            
+              <div class="form-group">
+                <%= f.label :description %>
+                <%= f.text_area :description, rows: 5, class: 'form-control' %>
+              </div>
 
-            <p>
-              <%= f.submit %>
-            </p>
-        <% end %>
+              <div class="form-group">
+                <%= f.submit class: 'btn btn-primary' %>
+              </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
 
     <div class="row">
-      <h3>Reviews </h3>
-      <% @product.reviews.reverse.each do |review| %>
-        <%= render 'rating', rating: review.rating %>
-        <p><%= review.description %></p>
-        <% if review.user.id == session[:user_id]%>
-          <%= button_to 'Delete Review', [@product, review], method: :delete %>
-        <% end %>
-      <% end %>
+      <div class="col-sm-12">
+        <h3>Reviews</h3>
+      </div>
     </div>
+
+    <% @product.reviews.reverse.each do |review| %>
+      <div class="row review">
+        <div class="rating">
+          <%= render 'rating', rating: review.rating %>
+        </div>
+        <div>
+          <p><%= review.description %></p>
+        </div> 
+        <% if review.user.id == session[:user_id]%>
+          <div>
+            <%= button_to 'Delete Review', [@product, review], method: :delete, class: 'btn btn-danger'  %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
 
   </article>
 </section>

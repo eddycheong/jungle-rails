@@ -83,6 +83,21 @@ main section.products-show {
       max-width: 100%;
     }
   }
+
+  .review {
+
+    margin: 1.5rem 0;
+
+    .rating {
+      color: #F8991D;
+      margin: 0.5rem 0;
+      font-size: 2rem;
+    }
+  }
+
+  #review-form {
+    margin-top: 5rem;
+  }
 }
 
 
