@@ -31,7 +31,9 @@
     <h3>Reviews </h3>
     <% @product.reviews.each do |review| %>
       <div class="row">
-        <p><%= review.rating %></p>
+        <%= render 'rating', rating: review.rating %>
+      </div>
+      <div class="row">
         <p><%= review.description %></p>
       </div>
     <% end %>
