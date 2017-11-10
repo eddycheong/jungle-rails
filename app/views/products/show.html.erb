@@ -30,7 +30,7 @@
       <%= form_for [@product, @review] do |f| %>
           <p>
             <%= f.label :rating %><br>
-            <%= f.number_field :rating %>
+            <%= f.select(:rating, (1..5)) %>
           </p>
         
           <p>
@@ -46,7 +46,7 @@
 
     <div class="row">
       <h3>Reviews </h3>
-      <% @product.reviews.each do |review| %>
+      <% @product.reviews.reverse.each do |review| %>
         <%= render 'rating', rating: review.rating %>
         <p><%= review.description %></p>
       <% end %>
