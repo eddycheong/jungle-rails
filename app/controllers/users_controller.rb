@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :logged_in
+
   def new
     @user = User.new
   end

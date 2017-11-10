@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_filter :logged_in, :only => :new
+
   def new
   end
 
