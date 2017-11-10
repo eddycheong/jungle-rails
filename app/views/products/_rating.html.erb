@@ -6,7 +6,8 @@
 <%# The rating has no floating point, which will show all rest as empty stars %>
 <% if rating.to_f % 1 == 0%>
   <% (5 - rating.to_i).times do |i| %>
-  <%= fa_icon 'star-o' %>
+    <%= fa_icon 'star-o' %>
+  <% end %>
 <%# The rating has a floating point, which we will represent as a half star %>
 <% else  %>
   <%= fa_icon 'star-half-empty' %>
