@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <% if session[:user_id] %>
+    <% if !current_user.nil? %>
       <div class="row">
         <div id="review-form" class="col-sm-12">
           <%= form_for [@product, @review] do |form| %>
@@ -63,7 +63,7 @@
           <p><%= "By: #{review.user.first_name} #{review.user.last_name}" %></p>
           <p><%= review.description %></p>
         </div> 
-        <% if review.user.id == session[:user_id]%>
+        <% if review.user == current_user %>
           <div>
             <%= button_to 'Delete Review', [@product, review], method: :delete, class: 'btn btn-danger'  %>
           </div>
