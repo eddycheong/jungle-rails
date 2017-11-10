@@ -25,18 +25,28 @@
         </dl>
       </div>
     </div>
-  </article>
 
-  <article class="product-review">
-    <h3>Reviews </h3>
-    <% @product.reviews.each do |review| %>
-      <div class="row">
+    <div class="row">
+      <%= form_for [@product, @review] do |f| %>
+          <p>
+            <%= f.label :rating %><br>
+            <%= f.number_field :rating %>
+          </p>
+        
+          <p>
+            <%= f.label :description %><br>
+            <%= f.text_area :description %>
+          </p>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <h3>Reviews </h3>
+      <% @product.reviews.each do |review| %>
         <%= render 'rating', rating: review.rating %>
-      </div>
-      <div class="row">
         <p><%= review.description %></p>
-      </div>
-    <% end %>
-  </article>
+      <% end %>
+    </div>
 
+  </article>
 </section>
