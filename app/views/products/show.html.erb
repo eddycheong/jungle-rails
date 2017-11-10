@@ -49,6 +49,9 @@
       <% @product.reviews.reverse.each do |review| %>
         <%= render 'rating', rating: review.rating %>
         <p><%= review.description %></p>
+        <% if review.user.id == session[:user_id]%>
+          <%= button_to 'Delete Review', [@product, review], method: :delete %>
+        <% end %>
       <% end %>
     </div>
 

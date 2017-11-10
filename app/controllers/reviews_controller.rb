@@ -8,13 +8,22 @@ class ReviewsController < ApplicationController
     new_review_params[:user_id] = session[:user_id]
 
     @review = @product.reviews.new(new_review_params)
-    @review.user = current_user
+    @review.user = User.find(session[:user_id])
 
     if @review.save
       redirect_to @product, notice: 'Review Created'
     else
       redirect_to @product
     end
+  end
+
+  def destroy
+    @review = Review.find params[:id]
+
+    @product = Product.find(@review.product_id)
+
+    @review.destroy
+    redirect_to @product
   end
 
   private
