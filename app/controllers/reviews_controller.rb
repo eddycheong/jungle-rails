@@ -4,10 +4,7 @@ class ReviewsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     
-    new_review_params = review_params
-    new_review_params[:user_id] = session[:user_id]
-
-    @review = @product.reviews.new(new_review_params)
+    @review = @product.reviews.new(review_params)
     @review.user = User.find(session[:user_id])
 
     if @review.save
