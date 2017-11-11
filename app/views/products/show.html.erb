@@ -65,7 +65,7 @@
         </div> 
         <% if review.user == current_user %>
           <div>
-            <%= button_to 'Delete Review', [@product, review], method: :delete, class: 'btn btn-danger'  %>
+            <%= button_to 'Delete Review', review, method: :delete, class: 'btn btn-danger'  %>
           </div>
         <% end %>
       </div>
