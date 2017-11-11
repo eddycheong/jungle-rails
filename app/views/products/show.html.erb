@@ -57,7 +57,7 @@
     <% @product.reviews.reverse.each do |review| %>
       <div class="row review">
         <div class="rating">
-          <%= render 'rating', rating: review.rating %>
+          <%= render 'shared/rating', rating: review.rating %>
         </div>
         <div>
           <p><%= "By: #{review.user.first_name} #{review.user.last_name}" %></p>
