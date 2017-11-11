@@ -35,7 +35,7 @@ puts "Re-creating Products ..."
 
 Product.destroy_all
 
-cat1.products.create!({
+prod1 = cat1.products.create!({
   name:  'Men\'s Classy shirt',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel1.jpg'),
@@ -43,7 +43,7 @@ cat1.products.create!({
   price: 64.99
 })
 
-cat1.products.create!({
+prod2 = cat1.products.create!({
   name:  'Women\'s Zebra pants',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel2.jpg'),
@@ -51,7 +51,7 @@ cat1.products.create!({
   price: 124.99
 })
 
-cat1.products.create!({
+prod3 = cat1.products.create!({
   name:  'Hipster Hat',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel3.jpg'),
@@ -142,33 +142,29 @@ user1 = User.create!({
   first_name: 'Eddy',
   last_name: 'Cheong',
   email: 'eddycheong@cheong.com',
-  password_digest: BCrypt::Password.create('eddy')
+  password: 'eddy'
 })
 
 user2 = User.create!({
   first_name: 'Thomas',
   last_name: 'Edison',
   email: 'thomas@edison.com',
-  password_digest: BCrypt::Password.create('thomas')
+  password: 'thomas'
 })
 
 ## REVIEWS
 
 puts "Re-creating Reviews ..."
 
-prod1 = Product.find_by(name: 'Red Bookshelf')
-prod2 = Product.find_by(name: 'Hotdog Slicer')
-prod3 = Product.find_by(name: 'Electric Chair')
-
 Review.destroy_all
 
-prod1.reviews.create!(user_id: user1.id, description: 'The bookshelf is much smaller in real life...')
-prod1.reviews.create!(user_id: user2.id, rating: 5)
+prod1.reviews.create!(user: user1, rating: 2, description: 'The bookshelf is much smaller in real life...')
+prod1.reviews.create!(user: user2, rating: 5)
 
-prod2.reviews.create!(user_id: user1.id, rating: 1, description: 'It doesn\'t slices and dices!')
-prod2.reviews.create!(user_id: user2.id, rating: 1, description: 'It slices my fingers better than hotdogs.')
+prod2.reviews.create!(user: user1, rating: 1, description: 'It doesn\'t slices and dices!')
+prod2.reviews.create!(user: user2, rating: 1, description: 'It slices my fingers better than hotdogs.')
 
-prod3.reviews.create!(user_id: user1.id, rating: 2, description: 'It is a bit shocking.')
-prod3.reviews.create!(user_id: user2.id, rating: 4, description: 'This is exactly what I need!')
+prod3.reviews.create!(user: user1, rating: 2, description: 'It is a bit shocking.')
+prod3.reviews.create!(user: user2, rating: 4, description: 'This is exactly what I need!')
 
 puts "DONE!"
