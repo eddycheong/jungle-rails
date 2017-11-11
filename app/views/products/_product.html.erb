@@ -10,7 +10,7 @@
     <% else %>
       <span><%= product.reviews.average(:rating) %></span>
     <% end %>
-    <%= render 'rating', rating: product.reviews.average(:rating) %>
+    <%= render 'shared/rating', rating: product.reviews.average(:rating) %>
   </section>
   </header>
   <p class="description">
