@@ -4,6 +4,8 @@ Jungle is a small e-commerce application that allows users and visitors to brows
 
 Jungle is a full stack web application built with Ruby on Rails v4.2 and PostgreSQL.
 
+## Final Product
+
 !["Screenshot of Jungle"](https://github.com/eddycheong/jungle-rails/blob/master/docs/jungle.gif)
 !["Screenshot of Jungle as Admin"](https://github.com/eddycheong/jungle-rails/blob/master/docs/admin.gif)
 
