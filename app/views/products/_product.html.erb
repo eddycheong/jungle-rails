@@ -5,12 +5,10 @@
       <h4><%= product.name %></h4>
     <% end %>
   <section class="rating">
-    <% if product.reviews.empty? %>
-      <span>0.0</span>
-    <% else %>
+    <% if !product.reviews.empty? %>
       <span><%= product.reviews.average(:rating) %></span>
+      <%= render 'shared/rating', rating: product.reviews.average(:rating) %>
     <% end %>
-    <%= render 'shared/rating', rating: product.reviews.average(:rating) %>
   </section>
   </header>
   <p class="description">
