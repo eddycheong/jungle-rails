@@ -5,15 +5,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email])
-
-    if user && user.authenticate(params[:session][:password])
+    if user = User.authenticate_with_credentials(params[:session][:email], params[:session][:password])
+      # success logic, log them in
       session[:user_id] = user.id
       redirect_to root_path
     else
+      # failure, render login form
       redirect_to login_path
     end
-
   end
 
   def destroy
