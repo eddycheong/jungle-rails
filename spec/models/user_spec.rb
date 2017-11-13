@@ -43,7 +43,6 @@ RSpec.describe User, type: :model do
       expect(@user.errors.messages[:last_name]).to eq ['can\'t be blank']
     end
 
-
     it 'should not create a user when email is missing' do
       @user = User.new(first_name: "John", last_name: "Doe", password: "john", password_confirmation: "john")
       
@@ -51,5 +50,21 @@ RSpec.describe User, type: :model do
       expect(@user.save).to eq false
       expect(@user.errors.messages[:email]).to eq ['can\'t be blank']
     end
+
+    it 'should create a user when password is at least the minimum length' do
+      @user = User.new(first_name: "John", last_name: "Doe", password: "john", password_confirmation: "john", email: "john@doe.mia")
+      
+      expect(@user).to be_valid
+      expect(@user.save).to eq true
+    end
+
+    it 'should not create a user when password is below the minimum length' do
+      @user = User.new(first_name: "John", last_name: "Doe", password: "joe", password_confirmation: "joe", email: "john@doe.mia")
+      
+      expect(@user).to_not be_valid
+      expect(@user.save).to eq false
+      expect(@user.errors.messages[:password].first).to match(/is too short/)
+    end
   end
+
 end
