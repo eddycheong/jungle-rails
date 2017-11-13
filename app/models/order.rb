@@ -11,7 +11,8 @@ class Order < ActiveRecord::Base
   protected
     def deduct_products_quantity
       self.line_items.each do |line_item|
-        product = Product.find(line_item.product_id)
+        # product = Product.find(line_item.product_id)
+        product = line_item.product
 
         product.quantity -= line_item.quantity
         product.save!

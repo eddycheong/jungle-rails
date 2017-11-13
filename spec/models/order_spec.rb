@@ -10,6 +10,7 @@ RSpec.describe Order, type: :model do
       # Setup at least one product that will NOT be in the order
       @product3 = @category.products.create!(name: "Towel", price: 5.00, quantity: 7)
     end
+    
     it 'deducts quantity from products based on their line item quantities' do
       # setup
       original_quantity1 = @product1.quantity
@@ -28,16 +29,12 @@ RSpec.describe Order, type: :model do
       # 2. build line items on @order
       @order.line_items.new(
         product: @product1,
-        quantity: quantity1,
-        item_price: @product1.price,
-        total_price: @product1.price * quantity1
+        quantity: quantity1
       )
 
       @order.line_items.new(
         product: @product2,
-        quantity: quantity2,
-        item_price: @product2.price,
-        total_price: @product2.price * quantity2
+        quantity: quantity2
       )
 
       # 3. save! the order - ie raise an exception if it fails (not expected)
@@ -70,16 +67,12 @@ RSpec.describe Order, type: :model do
       # 2. build line items on @order
       @order.line_items.new(
         product: @product1,
-        quantity: quantity1,
-        item_price: @product1.price,
-        total_price: @product1.price * quantity1
+        quantity: quantity1
       )
 
       @order.line_items.new(
         product: @product2,
-        quantity: quantity2,
-        item_price: @product2.price,
-        total_price: @product2.price * quantity2
+        quantity: quantity2
       )
 
       # 3. save! the order - ie raise an exception if it fails (not expected)
