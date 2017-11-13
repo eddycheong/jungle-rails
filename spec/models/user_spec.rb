@@ -2,21 +2,18 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before(:all) do
-    User.destroy_all
     @user = User.new(first_name: "John", last_name: "Doe", password: "john", password_confirmation: "john", email: "john@doe.mia")    
   end
   
   describe 'Validations' do
     it 'should create a user when password and password confirmation matches' do
-      # @user = User.new(first_name: "John", last_name: "Doe", password: "john", password_confirmation: "john", email: "john@doe.mia")
-
       expect(@user).to be_valid
       expect(@user.save).to eq true
     end
 
     it 'should not create a user when password and password confirmation mismatches' do
-      # @user = User.new(first_name: "John", last_name: "Doe", password: "john", password_confirmation: "doe", email: "john@doe.mia")
-      @user.password_confirmation = "doe"
+      @user = User.new(first_name: "John", last_name: "Doe", password: "john", password_confirmation: "doe", email: "john@doe.mia")    
+      
 
       expect(@user).to_not be_valid
       expect(@user.save).to eq false
@@ -82,12 +79,15 @@ RSpec.describe User, type: :model do
       expect(@user.save).to eq false
       expect(@user.errors.messages[:password].first).to match(/is too short/)
     end
+
+    after(:all) do
+      User.destroy_all
+    end
   end
 
   describe '.authenticate_with_credentials' do
     # examples for this class method here
     before(:all) do
-      User.destroy_all
       @user = User.create(first_name: "John", last_name: "Doe", password: "john", password_confirmation: "john", email: "john@doe.mia")      
     end
 
@@ -111,5 +111,8 @@ RSpec.describe User, type: :model do
       expect(@user).to be_a(User)
     end
 
+    after(:all) do
+      User.destroy_all
+    end
   end
 end
