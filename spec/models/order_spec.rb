@@ -19,11 +19,8 @@ RSpec.describe Order, type: :model do
       quantity1 = 5
       quantity2 = 6
 
-      cart_total = (@product1.price * quantity1 + @product2.price * quantity2) * 100
-
       # 1. initialize order with necessary fields (see orders_controllers, schema and model definition for what is required)
       @order = Order.new(
-        total_cents: cart_total,
         stripe_charge_id: "test"
       )
       # 2. build line items on @order
@@ -36,7 +33,6 @@ RSpec.describe Order, type: :model do
         product: @product2,
         quantity: quantity2
       )
-
       # 3. save! the order - ie raise an exception if it fails (not expected)
       @order.save!
       # 4. reload products to have their updated quantities
@@ -57,11 +53,8 @@ RSpec.describe Order, type: :model do
       quantity1 = 5
       quantity2 = 6
 
-      cart_total = (@product1.price * quantity1 + @product2.price * quantity2) * 100
-
       # 1. initialize order with necessary fields (see orders_controllers, schema and model definition for what is required)
       @order = Order.new(
-        total_cents: cart_total,
         stripe_charge_id: "test"
       )
       # 2. build line items on @order

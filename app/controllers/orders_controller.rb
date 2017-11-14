@@ -47,7 +47,9 @@ class OrdersController < ApplicationController
         quantity = details['quantity'].to_i
         order.line_items.new(
           product: product,
-          quantity: quantity
+          quantity: quantity,
+          item_price: product.price,
+          total_price: product.price * quantity
         )
       end
     end

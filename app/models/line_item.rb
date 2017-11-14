@@ -13,7 +13,7 @@ class LineItem < ActiveRecord::Base
     # weird question: what if they did set a total_price, but did not set a per-item ???
 
     if (!item_price_cents)
-      self.item_price_cents = product.price
+      self.item_price_cents = product.price_cents
     end
     if (!total_price_cents)
       self.total_price_cents = item_price_cents * quantity
